@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My orders</title>
+</head>
+<body>
+<a th:if="${currentUser ==  null}" href="/login">Login</a>
+<a th:if="${currentUser !=  null}" href="/logout">Logout</a>
+<span th:if="${currentUser != null}" th:text="Welcome + ' ' + ${currentUser.name}"></span>
+<a th:if="${currentUser ==  null}" href="/register">Register</a>
+<a href="/">Home</a>
+<a th:if="${currentUser != null && currentUser.userRole.name == 'ADMIN'}" href="/admin">Admin Panel</a>
+<br>
+    My orders:
+    <table border="1">
+        <tr>
+            <th>order date</th>
+            <th>amount</th>
+            <th>book title</th>
+        </tr>
+        <tr th:each="order: ${myOrders}">
+            <td th:text="${order.orderDateTime}"></td>
+            <td th:text="${order.book.price}"></td>
+            <td th:text="${order.book.title}"></td>
+        </tr>
+    </table>
+</body>
+</html>

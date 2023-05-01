@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:if="${currentUser ==  null}" href="/login">Login</a>
+<a th:if="${currentUser !=  null}" href="/logout">Logout</a>
+<span th:if="${currentUser != null}" th:text="Welcome + ${currentUser.name}"></span>
+<a th:if="${currentUser ==  null}" href="/register">Register</a>
+<a href="/">Home</a>
+<a th:if="${currentUser != null && currentUser.userRole.name == 'ADMIN'}" href="/admin">Admin Panel</a>
+Register:
+<form action="/register" method="post">
+    <input type="text" name="name" placeholder="Please input name">
+    <input type="text" name="surname" placeholder="Please input surname">
+    <input type="email" name="email" placeholder="Please input email">
+    <input type="password" name="password" placeholder="Please input password">
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>
